@@ -1,16 +1,18 @@
-name: Deploy Pages (chess + geophoto)
+name: Deploy Pages (chess + geophoto + structuralsketcher)
 
 # Un solo workflow para todo el sitio de Pages: actions/deploy-pages reemplaza
 # el sitio completo en cada ejecución, así que no puede haber un workflow por
 # app (el último en correr borraría a los demás). Este construye GeoPhoto
-# Studio, copia el ajedrez (estático, sin build) y agrega una página de inicio.
+# Studio y StructuralSketcher, copia el ajedrez (estático, sin build) y agrega
+# una página de inicio.
 
 on:
   push:
-    branches: [main, claude/zen-dirac-fj3fl5]
+    branches: [main, claude/zen-dirac-fj3fl5, claude/structural-sketcher-webapp-ew1xt8]
     paths:
       - 'chess/**'
       - 'geophoto/**'
+      - 'structuralsketcher/**'
       - 'pages/**'
       - '.github/workflows/deploy-pages.yml'
   workflow_dispatch: {}
@@ -34,7 +36,9 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: geophoto/package-lock.json
+          cache-dependency-path: |
+            geophoto/package-lock.json
+            structuralsketcher/package-lock.json
 
       - name: Build GeoPhoto Studio
         working-directory: geophoto
@@ -43,6 +47,16 @@ jobs:
           npm run build
         env:
           GITHUB_PAGES: 'true'
+
+      - name: Build StructuralSketcher
+        working-directory: structuralsketcher
+        run: |
+          npm ci
+          npm run typecheck
+          npm test
+          npm run build
+        env:
+          VITE_BASE: '/ClaudeCoding/structuralsketcher/'
 
       - name: Assemble site
         run: |
@@ -57,6 +71,9 @@ jobs:
           cp chess/index.html chess/styles.css _site/chess/
           cp -r chess/src _site/chess/src
           cp -r chess/vendor _site/chess/vendor
+
+          mkdir -p _site/structuralsketcher
+          cp -r structuralsketcher/dist/. _site/structuralsketcher/
 
       - uses: actions/configure-pages@v5
         with:
