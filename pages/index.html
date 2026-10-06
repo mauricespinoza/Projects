@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Geología Estructural · Web Apps</title>
-<meta name="description" content="Aplicaciones web para la investigación y la docencia en geología estructural: terreno, mapas, secciones y realidad aumentada.">
+<title>Geología · Web Apps</title>
+<meta name="description" content="Aplicaciones web orientadas a la geología de campo, el análisis de mapas geológicos y el modelado estructural, con recursos para la investigación y la docencia.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -130,10 +130,6 @@
   figure.photo.wide { grid-column: 1 / -1; }
   figure.photo.wide img { aspect-ratio: 4 / 3; }
   figure.photo figcaption { font-size: .78rem; color: var(--muted); margin-top: 6px; line-height: 1.4; }
-  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 18px 0 6px; }
-  .stats div { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; }
-  .stats b { display: block; font-family: "Source Serif 4", Georgia, serif; font-size: 1.35rem; color: var(--accent); line-height: 1.2; }
-  .stats span { font-size: .78rem; color: var(--muted); line-height: 1.35; display: block; }
   .credit {
     margin-top: 18px; padding: 16px 18px; border-left: 3px solid var(--accent);
     background: var(--accent-soft); border-radius: 0 8px 8px 0; font-size: .9rem;
@@ -159,7 +155,7 @@
   footer .disclaimer b { color: var(--ink); }
 
   @media (max-width: 820px) {
-    .grid, .others, .stats { grid-template-columns: 1fr; }
+    .grid, .others { grid-template-columns: 1fr; }
     footer .wrap { grid-template-columns: 1fr; }
     .explorar { grid-template-columns: 1fr; }
     .explorar .figure { border-left: 0; border-top: 1px solid var(--line); order: -1; }
@@ -188,7 +184,7 @@
   </svg>
   <div class="wrap">
     <nav class="top">
-      <a class="brand" href="#">Geología Estructural · Web Apps</a>
+      <a class="brand" href="#">Geología · Web Apps</a>
       <ul>
         <li><a href="#investigacion">Investigación</a></li>
         <li><a href="#docencia">Docencia</a></li>
@@ -198,7 +194,7 @@
     </nav>
     <div class="inner" style="margin-top:40px">
       <div class="eyebrow">Herramientas abiertas · terreno, mapa, sección y aula</div>
-      <h1>Aplicaciones web para investigar y enseñar geología estructural</h1>
+      <h1>Aplicaciones web orientadas a la geología de campo, el análisis de mapas geológicos y el modelado estructural</h1>
       <p>Un conjunto de herramientas que corren en el navegador —en el PC, en la tablet con lápiz o sin señal en terreno— para levantar datos, interpretar mapas, construir y restaurar secciones balanceadas, y llevar la tridimensionalidad de las estructuras a la sala de clases.</p>
     </div>
   </div>
@@ -360,12 +356,6 @@
         <p>La arquitectura tridimensional de los Andes es uno de los contenidos más difíciles de la formación en geología: los estudiantes describen bien la distribución superficial de unidades y estructuras, pero les cuesta vincularla con la estructura profunda del margen. ANDES 3D reemplaza el estudio pasivo de mapas y perfiles por el trabajo directo sobre una maqueta física del orógeno, entre el Altiplano-Puna y Tierra del Fuego.</p>
         <p>La maqueta (1,2 m × 90 cm; exageración vertical ×5) se talló en madera con fresado CNC a partir de modelos globales de elevación y batimetría, y sobre ella se pintó a mano un mapa geológico 1:2.500.000 homologado por el equipo docente a partir de Giambiagi et al. (2022) y de los mapas de Sudamérica y del Sernageomin. Seccionada en seis bloques, cada grupo construyó perfiles estructurales de escala cortical para las caras de su segmento —con ICD, Moho, LAB y slab— y los traspasó a la maqueta.</p>
 
-        <div class="stats">
-          <div><b>48 → 71 %</b><span>respuestas correctas, antes y después del trabajo con la maqueta</span></div>
-          <div><b>g = 0,45</b><span>ganancia normalizada de Hake (expositiva típica ≈ 0,20)</span></div>
-          <div><b>5 → 46 %</b><span>comprensión del concepto de vergencia</span></div>
-        </div>
-        <p style="font-size:.84rem;color:var(--muted)">Diagnóstico pre (n = 19) y post (n = 13), grupos independientes; diferencia significativa (Welch, p = 0,001; d de Cohen = 1,44).</p>
 
         <div class="credit" style="border-left-color:var(--teal);background:var(--teal-soft)">
           <strong>Créditos</strong>
