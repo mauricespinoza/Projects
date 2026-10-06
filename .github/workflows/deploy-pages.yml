@@ -8,7 +8,7 @@ name: Deploy Pages (chess + geophoto + structuralsketcher)
 
 on:
   push:
-    branches: [main, claude/zen-dirac-fj3fl5, claude/structural-sketcher-webapp-ew1xt8]
+    branches: [main, claude/zen-dirac-fj3fl5, claude/structural-sketcher-webapp-ew1xt8, claude/quirky-galileo-gjmork]
     paths:
       - 'chess/**'
       - 'geophoto/**'
@@ -47,6 +47,8 @@ jobs:
           npm run build
         env:
           GITHUB_PAGES: 'true'
+          # La base sale del nombre del repo, así un renombrado no rompe las rutas.
+          VITE_BASE: '/${{ github.event.repository.name }}/geophoto/'
 
       - name: Build StructuralSketcher
         working-directory: structuralsketcher
@@ -56,12 +58,12 @@ jobs:
           npm test
           npm run build
         env:
-          VITE_BASE: '/ClaudeCoding/structuralsketcher/'
+          VITE_BASE: '/${{ github.event.repository.name }}/structuralsketcher/'
 
       - name: Assemble site
         run: |
           mkdir -p _site
-          cp pages/index.html _site/index.html
+          cp -r pages/. _site/
 
           mkdir -p _site/geophoto
           cp -r geophoto/dist/. _site/geophoto/
