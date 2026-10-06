@@ -61,7 +61,7 @@ jobs:
       - name: Assemble site
         run: |
           mkdir -p _site
-          cp pages/index.html _site/index.html
+          cp -r pages/. _site/
 
           mkdir -p _site/geophoto
           cp -r geophoto/dist/. _site/geophoto/
