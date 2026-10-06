@@ -75,28 +75,12 @@
   header.hero h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 18px; }
   header.hero p { color: var(--muted); font-size: 1.08rem; margin: 0; max-width: 580px; }
 
-  /* ---------- Flujo de trabajo ---------- */
+  /* ---------- Secciones ---------- */
   section { padding: 64px 0 8px; }
   .section-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 8px; }
   .section-head .num { font-family: "Source Serif 4", Georgia, serif; color: var(--accent); font-size: 1.1rem; }
   .section-head h2 { font-size: 1.65rem; }
   .lead { color: var(--muted); max-width: 680px; margin: 0 0 28px; }
-
-  ol.flow {
-    list-style: none; margin: 0; padding: 0;
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
-    border: 1px solid var(--line); border-radius: 12px; background: var(--paper); overflow: hidden;
-  }
-  ol.flow li { padding: 18px 18px 20px; border-right: 1px solid var(--line); position: relative; }
-  ol.flow li:last-child { border-right: 0; }
-  ol.flow .step { font-size: .72rem; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); }
-  ol.flow b { display: block; font-family: "Source Serif 4", Georgia, serif; font-size: 1.15rem; margin: 2px 0 6px; }
-  ol.flow span.apps { font-size: .86rem; color: var(--accent); font-weight: 500; }
-  ol.flow li:not(:last-child)::after {
-    content: ""; position: absolute; right: -7px; top: 50%; width: 12px; height: 12px;
-    background: var(--paper); border-top: 1px solid var(--line); border-right: 1px solid var(--line);
-    transform: translateY(-50%) rotate(45deg); z-index: 1;
-  }
 
   /* ---------- Tarjetas de apps ---------- */
   .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
@@ -168,24 +152,21 @@
   .others span { font-size: .86rem; color: var(--muted); }
 
   footer { margin-top: 72px; padding: 28px 0 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; }
-  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  footer .wrap { display: grid; grid-template-columns: 1fr 1.6fr; gap: 24px 40px; align-items: start; }
   footer a { color: var(--muted); }
+  footer .who b { display: block; font-family: "Source Serif 4", Georgia, serif; font-size: 1.05rem; color: var(--ink); margin-bottom: 2px; }
+  footer .disclaimer { margin: 0; font-size: .8rem; line-height: 1.55; padding-left: 16px; border-left: 2px solid var(--line); }
+  footer .disclaimer b { color: var(--ink); }
 
   @media (max-width: 820px) {
     .grid, .others, .stats { grid-template-columns: 1fr; }
+    footer .wrap { grid-template-columns: 1fr; }
     .explorar { grid-template-columns: 1fr; }
     .explorar .figure { border-left: 0; border-top: 1px solid var(--line); order: -1; }
     .explorar .body { padding: 24px 20px; }
-    ol.flow { grid-template-columns: 1fr 1fr; }
-    ol.flow li:nth-child(2) { border-right: 0; }
-    ol.flow li:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
-    ol.flow li::after { display: none; }
   }
   @media (max-width: 560px) {
     nav.top ul { display: none; }
-    ol.flow { grid-template-columns: 1fr; }
-    ol.flow li { border-right: 0; border-bottom: 1px solid var(--line); }
-    ol.flow li:last-child { border-bottom: 0; }
     header.hero { padding: 36px 0 44px; }
   }
 </style>
@@ -209,7 +190,6 @@
     <nav class="top">
       <a class="brand" href="#">Geología Estructural · Web Apps</a>
       <ul>
-        <li><a href="#flujo">Flujo</a></li>
         <li><a href="#investigacion">Investigación</a></li>
         <li><a href="#docencia">Docencia</a></li>
         <li><a href="#explorar">ExplorAR</a></li>
@@ -226,21 +206,9 @@
 
 <main class="wrap">
 
-  <!-- ===================== Flujo ===================== -->
-  <section id="flujo">
-    <div class="section-head"><span class="num">01</span><h2>Del afloramiento a la sección</h2></div>
-    <p class="lead">Las aplicaciones cubren las etapas habituales de un estudio estructural y se conectan entre sí: por ejemplo, un perfil levantado en FieldDraw se abre directamente en StructuralSketcher.</p>
-    <ol class="flow">
-      <li><span class="step">Terreno</span><b>Levantar</b><span class="apps">FieldDraw · GeoPhoto Studio</span></li>
-      <li><span class="step">Mapa</span><b>Interpretar</b><span class="apps">MapTeaching</span></li>
-      <li><span class="step">Sección</span><b>Construir y balancear</b><span class="apps">StructuralSketcher</span></li>
-      <li><span class="step">Aula</span><b>Visualizar en 3D</b><span class="apps">ExplorAR · ANDES 3D</span></li>
-    </ol>
-  </section>
-
   <!-- ===================== Investigación ===================== -->
   <section id="investigacion">
-    <div class="section-head"><span class="num">02</span><h2>Investigación y trabajo de terreno</h2></div>
+    <div class="section-head"><span class="num">01</span><h2>Investigación y trabajo de terreno</h2></div>
     <p class="lead">Herramientas para producir datos e interpretaciones con criterio cuantitativo: geometría explícita, incertidumbre declarada y formatos interoperables con SIG.</p>
     <div class="grid">
 
@@ -305,7 +273,7 @@
 
   <!-- ===================== Docencia ===================== -->
   <section id="docencia">
-    <div class="section-head"><span class="num">03</span><h2>Docencia</h2></div>
+    <div class="section-head"><span class="num">02</span><h2>Docencia</h2></div>
     <p class="lead">Recursos para el aprendizaje que reproducen, paso a paso, los procedimientos clásicos que se hacen a mano en el papel, y que permiten verificar el resultado.</p>
     <div class="grid">
 
@@ -346,7 +314,7 @@
 
   <!-- ===================== ExplorAR ===================== -->
   <section id="explorar">
-    <div class="section-head"><span class="num">04</span><h2>Proyecto ExplorAR</h2></div>
+    <div class="section-head"><span class="num">03</span><h2>Proyecto ExplorAR</h2></div>
     <p class="lead">Una mesa de realidad aumentada para enseñar a leer el relieve y la geometría de las estructuras en tres dimensiones.</p>
     <div class="explorar">
       <div class="body">
@@ -383,7 +351,7 @@
 
   <!-- ===================== ANDES 3D ===================== -->
   <section id="andes3d">
-    <div class="section-head"><span class="num">05</span><h2>Proyecto ANDES 3D</h2></div>
+    <div class="section-head"><span class="num">04</span><h2>Proyecto ANDES 3D</h2></div>
     <p class="lead">Una maqueta a escala del orógeno andino para el aprendizaje significativo de la estructura cortical del margen.</p>
     <div class="explorar andes">
       <div class="body">
@@ -420,7 +388,7 @@
 
   <!-- ===================== Otros ===================== -->
   <section id="otros">
-    <div class="section-head"><span class="num">06</span><h2>Otros proyectos</h2></div>
+    <div class="section-head"><span class="num">05</span><h2>Otros proyectos</h2></div>
     <p class="lead">Experimentos publicados desde el mismo repositorio.</p>
     <div class="others">
       <a href="./chess/">
@@ -434,8 +402,18 @@
 
 <footer>
   <div class="wrap">
-    <span>Todas las apps corren en el navegador; los datos no salen del equipo salvo que se exporten.</span>
-    <a href="https://github.com/mauricespinoza">github.com/mauricespinoza</a>
+    <div class="who">
+      <b>Mauricio Espinoza</b>
+      Departamento de Ciencias de la Tierra, Universidad de Concepción · 2026<br>
+      <a href="mailto:mauricespinoza@udec.cl">mauricespinoza@udec.cl</a> ·
+      <a href="https://github.com/mauricespinoza">github.com/mauricespinoza</a>
+    </div>
+    <p class="disclaimer">
+      <b>Aviso.</b> Aplicaciones en versión beta, de uso libre para fines académicos y docentes; no son de uso comercial.
+      Desarrolladas con asistencia de inteligencia artificial. Se entregan «tal cual», sin garantía de ningún tipo: las secciones,
+      mediciones y restauraciones son ayudas interpretativas y deben ser verificadas por un geólogo o geóloga calificado antes de
+      darles crédito. Todas las apps corren en el navegador; los datos no salen del equipo salvo que se exporten.
+    </p>
   </div>
 </footer>
 
