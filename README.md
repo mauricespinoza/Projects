@@ -1,7 +1,7 @@
 # ClaudeCoding
 pruebas de codigos
 
-🌐 **Sitio en vivo:** https://mauricespinoza.github.io/ClaudeCoding/
+🌐 **Sitio en vivo:** https://mauricespinoza.github.io/ClaudeCoding/ — portada con todas las web apps de geología estructural (StructuralSketcher, FieldDraw, GeoPhoto Studio, MapTeaching) y el proyecto ExplorAR.
 
 ## Apps
 
