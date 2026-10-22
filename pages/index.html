@@ -137,6 +137,28 @@
   .credit strong { display: block; margin-bottom: 4px; }
   .credit cite { font-style: normal; display: block; margin-top: 8px; color: var(--muted); font-size: .84rem; }
 
+
+  /* ---------- Carrusel ExplorAR ---------- */
+  .explorar .figure.carousel-wrap { display: flex; flex-direction: column; justify-content: center; gap: 12px; }
+  .carousel { position: relative; border-radius: 10px; overflow: hidden; background: var(--line); aspect-ratio: 3 / 4; }
+  .carousel .slide { position: absolute; inset: 0; margin: 0; opacity: 0; transition: opacity 1s ease; }
+  .carousel .slide.active { opacity: 1; }
+  .carousel .slide img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: auto; border-radius: 0; transform: scale(1.02); }
+  .carousel .slide.active img { animation: kenburns 8s ease-out forwards; }
+  @keyframes kenburns { from { transform: scale(1.02) translate(0, 0); } to { transform: scale(1.12) translate(-2%, -2%); } }
+  .carousel .nav {
+    position: absolute; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; border-radius: 50%;
+    border: 0; background: rgba(20,20,15,.45); color: #fff; font-size: 1.5rem; line-height: 1; cursor: pointer;
+    opacity: 0; transition: opacity .2s;
+  }
+  .carousel:hover .nav, .carousel:focus-within .nav { opacity: 1; }
+  .carousel .nav.prev { left: 10px; } .carousel .nav.next { right: 10px; }
+  .carousel .dots { position: absolute; bottom: 10px; left: 0; right: 0; display: flex; justify-content: center; gap: 8px; }
+  .carousel .dots button { width: 9px; height: 9px; padding: 0; border-radius: 50%; border: 0; background: rgba(255,255,255,.55); cursor: pointer; }
+  .carousel .dots button.on { background: #fff; }
+  .explorar .figure .cap { font-size: .78rem; color: var(--muted); margin: 0; line-height: 1.4; }
+  @media (prefers-reduced-motion: reduce) { .carousel .slide.active img { animation: none; } .carousel .slide { transition: none; } }
+
   /* ---------- Otros ---------- */
   .others { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
   .others a {
@@ -186,9 +208,9 @@
     <nav class="top">
       <a class="brand" href="#">Geología · Web Apps</a>
       <ul>
+        <li><a href="#explorar">ExplorAR</a></li>
         <li><a href="#investigacion">Investigación</a></li>
         <li><a href="#docencia">Docencia</a></li>
-        <li><a href="#explorar">ExplorAR</a></li>
         <li><a href="#andes3d">ANDES 3D</a></li>
       </ul>
     </nav>
@@ -202,9 +224,46 @@
 
 <main class="wrap">
 
+  <!-- ===================== ExplorAR ===================== -->
+  <section id="explorar">
+    <div class="section-head"><span class="num">01</span><h2>Proyecto ExplorAR</h2></div>
+    <p class="lead">Una mesa de realidad aumentada para enseñar a leer el relieve y la geometría de las estructuras en tres dimensiones.</p>
+    <div class="explorar">
+      <div class="body">
+        <h3>ExplorAR</h3>
+        <div class="sub">Mesa de arena con realidad aumentada</div>
+        <p>Los estudiantes modelan el terreno con las manos; un sensor de profundidad (Kinect o LiDAR) captura la superficie y un proyector superpone, en tiempo real, el mapa hipsométrico con sus curvas de nivel. Sobre esa topografía cambiante se proyectan además modelos geológicos 3D, de modo que la traza de los contactos y las fallas responde al relieve —la regla de las V se ve, literalmente, al mover la arena.</p>
+        <p>Es un recurso para la docencia y la divulgación: relaciona mapa y topografía, la intersección de planos con la superficie y la lectura de mapas geológicos, uniendo los ejercicios de MapTeaching con una experiencia física.</p>
+
+        <div class="credit">
+          <strong>Implementado a partir del código de Aachen</strong>
+          ExplorAR no es un desarrollo original desde cero: se construyó sobre <a href="https://open-ar-sandbox.readthedocs.io/en/latest/">Open AR-Sandbox</a>, el software libre del grupo CGRE (Computational Geoscience) de la <b>RWTH Aachen University</b>, que integra el modelador geológico GemPy. Se distribuye bajo licencia GNU LGPL v3.0, y todo el crédito del software base corresponde a sus autores.
+          <cite>Wellmann, F., Virgo, S., Escallon, D., de la Varga, M., Jüstel, A., Wagner, F. M., Kowalski, J., Zhao, H., Fehling, R., y Chen, Q. (2022). Open AR-Sandbox: A haptic interface for geoscience education and outreach. <i>Geosphere</i>. <a href="https://doi.org/10.1130/GES02455.1">doi:10.1130/GES02455.1</a></cite>
+        </div>
+
+        <div class="links" style="margin-top:20px">
+          <a class="btn primary" href="https://open-ar-sandbox.readthedocs.io/en/latest/">Proyecto original (Aachen) →</a>
+        </div>
+      </div>
+
+      <div class="figure carousel-wrap">
+        <div class="carousel" role="region" aria-roledescription="carrusel" aria-label="Fotos de la mesa ExplorAR">
+          <div class="slides">
+            <figure class="slide active"><img src="img/explorar-1.jpg" alt="Mesa ExplorAR: relieve de arena con mapa hipsométrico y curvas de nivel proyectadas"></figure>
+            <figure class="slide"><img src="img/explorar-2.jpg" alt="Mesa ExplorAR con curvas de nivel y un lago proyectado sobre la arena"></figure>
+          </div>
+          <button class="nav prev" type="button" aria-label="Imagen anterior">‹</button>
+          <button class="nav next" type="button" aria-label="Imagen siguiente">›</button>
+          <div class="dots" role="tablist"></div>
+        </div>
+        <p class="cap">La topografía modelada con las manos recibe en tiempo real su mapa hipsométrico, curvas de nivel acotadas y cuerpos de agua.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ===================== Investigación ===================== -->
   <section id="investigacion">
-    <div class="section-head"><span class="num">01</span><h2>Investigación y trabajo de terreno</h2></div>
+    <div class="section-head"><span class="num">02</span><h2>Investigación y trabajo de terreno</h2></div>
     <p class="lead">Herramientas para producir datos e interpretaciones con criterio cuantitativo: geometría explícita, incertidumbre declarada y formatos interoperables con SIG.</p>
     <div class="grid">
 
@@ -283,7 +342,7 @@
 
   <!-- ===================== Docencia ===================== -->
   <section id="docencia">
-    <div class="section-head"><span class="num">02</span><h2>Docencia</h2></div>
+    <div class="section-head"><span class="num">03</span><h2>Docencia</h2></div>
     <p class="lead">Recursos para el aprendizaje que reproducen, paso a paso, los procedimientos clásicos que se hacen a mano en el papel, y que permiten verificar el resultado.</p>
     <div class="grid">
 
@@ -318,42 +377,6 @@
         </div>
       </article>
 
-    </div>
-  </section>
-
-  <!-- ===================== ExplorAR ===================== -->
-  <section id="explorar">
-    <div class="section-head"><span class="num">03</span><h2>Proyecto ExplorAR</h2></div>
-    <p class="lead">Una mesa de realidad aumentada para enseñar a leer el relieve y la geometría de las estructuras en tres dimensiones.</p>
-    <div class="explorar">
-      <div class="body">
-        <h3>ExplorAR</h3>
-        <div class="sub">Mesa de arena con realidad aumentada</div>
-        <p>Los estudiantes modelan el terreno con las manos; un sensor de profundidad (Kinect o LiDAR) captura la superficie y un proyector superpone, en tiempo real, el mapa hipsométrico con sus curvas de nivel. Sobre esa topografía cambiante se proyectan además modelos geológicos 3D, de modo que la traza de los contactos y las fallas responde al relieve —la regla de las V se ve, literalmente, al mover la arena.</p>
-        <p>Es un recurso para la docencia y la divulgación: relaciona mapa y topografía, la intersección de planos con la superficie y la lectura de mapas geológicos, uniendo los ejercicios de MapTeaching con una experiencia física.</p>
-
-        <div class="credit">
-          <strong>Implementado a partir del código de Aachen</strong>
-          ExplorAR no es un desarrollo original desde cero: se construyó sobre <a href="https://open-ar-sandbox.readthedocs.io/en/latest/">Open AR-Sandbox</a>, el software libre del grupo CGRE (Computational Geoscience) de la <b>RWTH Aachen University</b>, que integra el modelador geológico GemPy. Se distribuye bajo licencia GNU LGPL v3.0, y todo el crédito del software base corresponde a sus autores.
-          <cite>Wellmann, F., Virgo, S., Escallon, D., de la Varga, M., Jüstel, A., Wagner, F. M., Kowalski, J., Zhao, H., Fehling, R., y Chen, Q. (2022). Open AR-Sandbox: A haptic interface for geoscience education and outreach. <i>Geosphere</i>. <a href="https://doi.org/10.1130/GES02455.1">doi:10.1130/GES02455.1</a></cite>
-        </div>
-
-        <div class="links" style="margin-top:20px">
-          <a class="btn primary" href="https://open-ar-sandbox.readthedocs.io/en/latest/">Proyecto original (Aachen) →</a>
-        </div>
-      </div>
-
-      <div class="figure">
-        <figure class="photo">
-          <img src="img/explorar-1.jpg" alt="Mesa ExplorAR: relieve de arena con mapa hipsométrico y curvas de nivel proyectadas">
-        </figure>
-        <figure class="photo">
-          <img src="img/explorar-2.jpg" alt="Mesa ExplorAR con curvas de nivel y un lago proyectado sobre la arena">
-        </figure>
-        <figure class="photo wide" style="margin-top:-4px">
-          <figcaption>La topografía modelada con las manos recibe en tiempo real su mapa hipsométrico, curvas de nivel acotadas y cuerpos de agua.</figcaption>
-        </figure>
-      </div>
     </div>
   </section>
 
@@ -419,5 +442,29 @@
   </div>
 </footer>
 
+<script>
+(function () {
+  var c = document.querySelector('.carousel'); if (!c) return;
+  var slides = c.querySelectorAll('.slide'), dotsBox = c.querySelector('.dots'), i = 0, timer;
+  var dots = Array.prototype.map.call(slides, function (_, n) {
+    var b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', 'Ir a la imagen ' + (n + 1));
+    b.onclick = function () { go(n, true); }; dotsBox.appendChild(b); return b;
+  });
+  function go(n, user) {
+    slides[i].classList.remove('active');
+    i = (n + slides.length) % slides.length;
+    var img = slides[i].querySelector('img'); slides[i].classList.add('active');
+    img.style.animation = 'none'; void img.offsetWidth; img.style.animation = '';
+    dots.forEach(function (d, k) { d.classList.toggle('on', k === i); });
+    if (user) restart();
+  }
+  function restart() { clearInterval(timer); timer = setInterval(function () { go(i + 1); }, 5000); }
+  c.querySelector('.prev').onclick = function () { go(i - 1, true); };
+  c.querySelector('.next').onclick = function () { go(i + 1, true); };
+  c.addEventListener('mouseenter', function () { clearInterval(timer); });
+  c.addEventListener('mouseleave', restart);
+  go(0); restart();
+})();
+</script>
 </body>
 </html>
