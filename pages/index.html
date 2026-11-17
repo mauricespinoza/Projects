@@ -113,6 +113,37 @@
   .btn.primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
   .btn.primary:hover { opacity: .88; }
 
+  article.app .icon.pixel { background: none; overflow: hidden; }
+  article.app .icon.pixel img { width: 44px; height: 44px; image-rendering: pixelated; display: block; }
+  article.app .head > div:nth-child(2) { flex: 1; min-width: 0; }
+  .visits {
+    flex: none; display: inline-flex; align-items: center; gap: 5px; font-size: .78rem; color: var(--muted);
+    font-variant-numeric: tabular-nums; white-space: nowrap; margin-top: 4px;
+  }
+  .visits svg { width: 15px; height: 15px; }
+  .visits[hidden] { display: none; }
+
+  /* ---------- Visitas ---------- */
+  .stats {
+    display: grid; grid-template-columns: 240px 1fr; gap: 0;
+    background: var(--paper); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow);
+  }
+  .stats .side { padding: 28px 26px; border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 18px; }
+  .stats .big { font-family: "Source Serif 4", Georgia, serif; font-size: 2.6rem; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
+  .stats .big-label { color: var(--muted); font-size: .86rem; margin-top: 6px; }
+  .stats ol { margin: 0; padding: 0; list-style: none; font-size: .88rem; }
+  .stats ol li { display: flex; justify-content: space-between; gap: 10px; padding: 4px 0; border-bottom: 1px dashed var(--line); }
+  .stats ol li span:last-child { color: var(--muted); font-variant-numeric: tabular-nums; }
+  .stats .side h3 { font-size: 1rem; margin-bottom: 6px; }
+  .stats .mapbox { padding: 16px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+  .stats svg.world { width: 100%; height: auto; display: block; }
+  .stats svg.world path { fill: var(--line); stroke: var(--paper); stroke-width: .5; transition: opacity .15s; }
+  .stats svg.world path:hover { opacity: .75; }
+  .stats .legend { display: flex; align-items: center; gap: 8px; font-size: .76rem; color: var(--muted); }
+  .stats .legend .ramp { height: 8px; width: 140px; border-radius: 4px; background: linear-gradient(90deg, var(--teal-soft), var(--teal)); }
+  .stats .note { font-size: .78rem; color: var(--muted); margin: 0; line-height: 1.45; }
+  .stats .empty { color: var(--muted); font-size: .88rem; margin: 0; }
+
   /* ---------- ExplorAR ---------- */
   .explorar {
     display: grid; grid-template-columns: 1.15fr 1fr; gap: 0;
@@ -182,6 +213,8 @@
     .explorar { grid-template-columns: 1fr; }
     .explorar .figure { border-left: 0; border-top: 1px solid var(--line); order: -1; }
     .explorar .body { padding: 24px 20px; }
+    .stats { grid-template-columns: 1fr; }
+    .stats .side { border-right: 0; border-bottom: 1px solid var(--line); }
   }
   @media (max-width: 560px) {
     nav.top ul { display: none; }
@@ -212,6 +245,7 @@
         <li><a href="#investigacion">Investigación</a></li>
         <li><a href="#docencia">Docencia</a></li>
         <li><a href="#andes3d">ANDES 3D</a></li>
+        <li><a href="#visitas">Visitas</a></li>
       </ul>
     </nav>
     <div class="inner" style="margin-top:40px">
@@ -271,6 +305,7 @@
         <div class="head">
           <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17c3-1 5-6 9-6s6 4 11 3"/><path d="M2 12c3-1 5-6 9-6s6 4 11 3"/><path d="M8 21 16 3"/></svg></div>
           <div><h3>StructuralSketcher</h3><div class="sub">Secciones estructurales, restauración y modelado directo</div></div>
+          <span class="visits" data-path="/structuralsketcher/" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><b></b></span>
         </div>
         <div class="tags"><span class="tag inv">Investigación</span><span class="tag doc">Docencia</span></div>
         <p>Editor vectorial de secciones geológicas: se digitalizan horizontes, fallas, topografía y datos de manteo sobre una imagen o desde cero, para luego medir, restaurar y balancear.</p>
@@ -289,6 +324,7 @@
         <div class="head">
           <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/></svg></div>
           <div><h3>FieldDraw</h3><div class="sub">Mapeo geológico en tablet, PC y teléfono</div></div>
+          <span class="visits" data-path="/fielddraw/" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><b></b></span>
         </div>
         <div class="tags"><span class="tag ter">Terreno</span><span class="tag inv">Investigación</span></div>
         <p>Cartografía digital pensada para el lápiz y para trabajar sin señal: mapas base, curvas de nivel generadas en el cliente y digitalización con simbología estructural.</p>
@@ -307,6 +343,7 @@
         <div class="head">
           <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20c1-6 4-9 8-9"/><circle cx="4" cy="20" r="1.4"/><circle cx="12" cy="11" r="1.4"/><path d="M12 11c3 0 5-2 6-6"/><circle cx="18" cy="5" r="1.4"/><path d="M3 4h4M5 2v4"/></svg></div>
           <div><h3>GISDrawer</h3><div class="sub">Dibujo vectorial georreferenciado</div></div>
+          <span class="visits" data-path="/gisdraw/" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><b></b></span>
         </div>
         <div class="tags"><span class="tag ter">Terreno</span><span class="tag inv">Investigación</span></div>
         <p>Un programa de dibujo donde todo está en coordenadas reales (WGS84 / UTM 19S): se dibuja sobre mapas, relieve e imágenes georreferenciadas y el resultado sale como dato SIG o como lámina impresa.</p>
@@ -324,6 +361,7 @@
         <div class="head">
           <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg></div>
           <div><h3>GeoPhoto Studio</h3><div class="sub">Fotografías de terreno georreferenciadas</div></div>
+          <span class="visits" data-path="/projects/geophoto/" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><b></b></span>
         </div>
         <div class="tags"><span class="tag ter">Terreno</span><span class="tag inv">Investigación</span></div>
         <p>Organiza las fotos de afloramientos a partir de su metadata de ubicación: las sitúa en un mapa, las exporta a Google Earth y permite anotarlas con rótulos de rumbo.</p>
@@ -350,6 +388,7 @@
         <div class="head">
           <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19c2-4 4-6 8-6s6-4 8-8"/><path d="M4 14c2-3 3-5 6-5"/><path d="M14 19l6-6"/><path d="M17 19l3-3"/></svg></div>
           <div><h3>MapTeaching</h3><div class="sub">Resolución de mapas geológicos</div></div>
+          <span class="visits" data-path="/mapteaching/" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><b></b></span>
         </div>
         <div class="tags"><span class="tag doc">Docencia</span></div>
         <p>Se digitaliza un mapa escaneado y la app resuelve con los mismos pasos del ejercicio en papel: contornos estructurales, rumbo y manteo de cada contacto, perfiles, modelo 3D y la columna esperada en un pozo.</p>
@@ -361,6 +400,25 @@
         </ul>
         <div class="links">
           <a class="btn primary" href="https://mauricespinoza.github.io/mapteaching/">Abrir app →</a>
+        </div>
+      </article>
+
+      <article class="app">
+        <div class="head">
+          <div class="icon pixel"><img src="img/minegeology.svg" alt="" width="44" height="44"></div>
+          <div><h3>MineGeology</h3><div class="sub">GeoMapper Chile · mapeo geológico en un mundo de bloques</div></div>
+          <span class="visits" data-path="/minegeology/" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><b></b></span>
+        </div>
+        <div class="tags"><span class="tag doc">Docencia</span><span class="tag ter">Terreno virtual</span></div>
+        <p>Un juego de navegador en que el estudiante recorre a pie un terreno ficticio de bloques, busca afloramientos bajo la cobertura, los mide con brújula, martillo y lupa, y construye el mapa geológico, el perfil y la historia del área.</p>
+        <ul class="feat">
+          <li>Cada área es inventada: su geología se modela en GemPy siguiendo patrones de la geología de Chile</li>
+          <li>Libreta de terreno, rumbo y manteo con la brújula, estereograma y reloj de jornada</li>
+          <li>Mapa sobre el tablero, perfil geológico, columna e historia; exporta GeoJSON y PDF</li>
+          <li>Modo práctica con evaluación automática que compara el mapa con la geología verdadera</li>
+        </ul>
+        <div class="links">
+          <a class="btn primary" href="https://mauricespinoza.github.io/MineGeology/">Jugar →</a>
         </div>
       </article>
 
@@ -419,7 +477,31 @@
       <a href="./chess/">
         <b>Ajedrez de Batalla 3D</b>
         <span>Ajedrez completo en 3D con piezas animadas, jugable en tablet o PC.</span>
+        <span class="visits" data-path="/projects/chess/" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><b></b></span>
       </a>
+    </div>
+  </section>
+
+  <!-- ===================== Visitas ===================== -->
+  <section id="visitas">
+    <div class="section-head"><span class="num">06</span><h2>Visitas</h2></div>
+    <p class="lead">Cuántas personas han abierto esta portada y las apps, y desde qué países.</p>
+    <div class="stats">
+      <div class="side">
+        <div>
+          <div class="big" id="visits-total">—</div>
+          <div class="big-label">visitas a la portada y a todas las apps</div>
+        </div>
+        <div>
+          <h3>Países con más visitas</h3>
+          <ol id="visits-top"><li><span>Sin datos todavía</span><span></span></li></ol>
+        </div>
+      </div>
+      <div class="mapbox">
+        <svg class="world" id="visits-map" viewBox="0 0 960 470" role="img" aria-label="Mapa del mundo con las visitas por país"></svg>
+        <div class="legend"><span>menos</span><span class="ramp"></span><span>más</span></div>
+        <p class="note" id="visits-note">Contador anónimo con <a href="https://www.goatcounter.com/">GoatCounter</a>: sin cookies y sin guardar direcciones IP. El país sale de la dirección de cada visita y el mapa se actualiza cada seis horas.</p>
+      </div>
     </div>
   </section>
 
@@ -437,7 +519,7 @@
       <b>Aviso.</b> Aplicaciones en versión beta, de uso libre para fines académicos y docentes; no son de uso comercial.
       Desarrolladas con asistencia de inteligencia artificial. Se entregan «tal cual», sin garantía de ningún tipo: las secciones,
       mediciones y restauraciones son ayudas interpretativas y deben ser verificadas por un geólogo o geóloga calificado antes de
-      darles crédito. Todas las apps corren en el navegador; los datos no salen del equipo salvo que se exporten.
+      darles crédito. Todas las apps corren en el navegador; los datos no salen del equipo salvo que se exporten. Las visitas se cuentan de forma anónima, sin cookies.
     </p>
   </div>
 </footer>
@@ -466,5 +548,92 @@
   go(0); restart();
 })();
 </script>
+
+<script>
+/* Contador de visitas (GoatCounter). Un solo sitio de GoatCounter cuenta la
+   portada y todas las apps de mauricespinoza.github.io: cada app carga el
+   mismo count.js, y las rutas se pasan a minúsculas para que /Projects/ y
+   /projects/ sean la misma. Las cifras vienen del contador público; los países,
+   de stats.json, que el workflow de Pages escribe cada seis horas. */
+var GOATCOUNTER = 'https://mauricespinoza.goatcounter.com';
+window.goatcounter = { path: function (p) { return p.toLowerCase(); } };
+(function () {
+  var fmt = new Intl.NumberFormat('es-CL');
+  function num(s) { return parseInt(String(s).replace(/\D/g, ''), 10) || 0; }
+  function counter(path) {
+    return fetch(GOATCOUNTER + '/counter/' + encodeURIComponent(path) + '.json')
+      .then(function (r) { return r.status === 404 ? { count: '0' } : r.ok ? r.json() : Promise.reject(r.status); })
+      .then(function (j) { return num(j.count); });
+  }
+
+  counter('TOTAL').then(function (n) {
+    document.getElementById('visits-total').textContent = fmt.format(n);
+  }).catch(function () {});
+
+  document.querySelectorAll('.visits[data-path]').forEach(function (el) {
+    counter(el.dataset.path).then(function (n) {
+      el.querySelector('b').textContent = fmt.format(n);
+      el.title = fmt.format(n) + (n === 1 ? ' visita' : ' visitas');
+      el.hidden = false;
+    }).catch(function () {});
+  });
+
+  // El mapa se arma cuando la sección se acerca a la pantalla.
+  var map = document.getElementById('visits-map');
+  var drawn = false;
+  function draw() {
+    if (drawn) return; drawn = true;
+    Promise.all([
+      fetch('world.json').then(function (r) { return r.json(); }),
+      fetch('stats.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; })
+    ]).then(function (res) {
+      var world = res[0], stats = res[1];
+      var counts = {};
+      (stats && stats.countries || []).forEach(function (c) { if (c.id) counts[c.id.toUpperCase()] = (counts[c.id.toUpperCase()] || 0) + c.count; });
+      var max = Math.max.apply(null, Object.values(counts).concat([1]));
+      var css = getComputedStyle(document.documentElement);
+      var lo = hex(css.getPropertyValue('--teal-soft')), hi = hex(css.getPropertyValue('--teal'));
+      var NS = 'http://www.w3.org/2000/svg', frag = document.createDocumentFragment();
+      Object.keys(world.countries).forEach(function (id) {
+        var name = world.countries[id][0], n = counts[id] || 0;
+        var p = document.createElementNS(NS, 'path');
+        p.setAttribute('d', world.countries[id][1]);
+        if (n) {
+          var t = max > 1 ? Math.log(n) / Math.log(max) : 1;
+          p.style.fill = mix(lo, hi, 0.25 + 0.75 * t);
+        }
+        var title = document.createElementNS(NS, 'title');
+        title.textContent = name + ': ' + fmt.format(n) + (n === 1 ? ' visita' : ' visitas');
+        p.appendChild(title);
+        frag.appendChild(p);
+      });
+      map.appendChild(frag);
+
+      var top = Object.keys(counts).sort(function (a, b) { return counts[b] - counts[a]; }).slice(0, 8);
+      if (top.length) {
+        var ol = document.getElementById('visits-top');
+        ol.innerHTML = '';
+        top.forEach(function (id) {
+          var li = document.createElement('li'), a = document.createElement('span'), b = document.createElement('span');
+          a.textContent = world.countries[id] ? world.countries[id][0] : id;
+          b.textContent = fmt.format(counts[id]);
+          li.appendChild(a); li.appendChild(b); ol.appendChild(li);
+        });
+      }
+      if (stats && stats.updated) {
+        var note = document.getElementById('visits-note');
+        var when = new Date(stats.updated).toLocaleString('es-CL', { dateStyle: 'medium', timeStyle: 'short' });
+        note.appendChild(document.createTextNode(' Última actualización: ' + when + (/\.$/.test(when) ? '' : '.')));
+      }
+    }).catch(function () {});
+  }
+  function hex(s) { s = s.trim().replace('#', ''); return [0, 2, 4].map(function (i) { return parseInt(s.substr(i, 2), 16); }); }
+  function mix(a, b, t) { return 'rgb(' + a.map(function (v, i) { return Math.round(v + (b[i] - v) * t); }).join(',') + ')'; }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (e, o) { if (e[0].isIntersecting) { o.disconnect(); draw(); } }, { rootMargin: '400px' }).observe(map);
+  } else draw();
+})();
+</script>
+<script data-goatcounter="https://mauricespinoza.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
