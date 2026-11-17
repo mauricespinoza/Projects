@@ -16,6 +16,9 @@ on:
       - 'pages/**'
       - '.github/workflows/deploy-pages.yml'
   workflow_dispatch: {}
+  # Cada seis horas, para refrescar stats.json (visitas por país).
+  schedule:
+    - cron: '23 */6 * * *'
 
 permissions:
   contents: read
@@ -76,6 +79,30 @@ jobs:
 
           mkdir -p _site/structuralsketcher
           cp -r structuralsketcher/dist/. _site/structuralsketcher/
+
+      # Visitas por país para el mapa de la portada. El token de GoatCounter
+      # (permiso «Read statistics») va en el secreto GOATCOUNTER_TOKEN; sin él,
+      # o si la API falla, la portada muestra el mapa vacío y el sitio se
+      # publica igual.
+      - name: Visit stats (GoatCounter)
+        env:
+          GOATCOUNTER_TOKEN: ${{ secrets.GOATCOUNTER_TOKEN }}
+          GOATCOUNTER_SITE: https://mauricespinoza.goatcounter.com
+        run: |
+          if [ -z "$GOATCOUNTER_TOKEN" ]; then echo "Sin GOATCOUNTER_TOKEN: no se escribe stats.json"; exit 0; fi
+          end=$(date -u +%Y-%m-%dT%H:00:00Z)
+          all='[]'; offset=0
+          while :; do
+            page=$(curl -sfS -H "Authorization: Bearer $GOATCOUNTER_TOKEN" \
+              "$GOATCOUNTER_SITE/api/v0/stats/locations?start=2020-01-01T00:00:00Z&end=$end&limit=100&offset=$offset") \
+              || { echo "::warning::GoatCounter no respondió; se publica sin stats.json"; exit 0; }
+            all=$(jq -c --argjson a "$all" '$a + [.stats[] | {id, name, count}]' <<<"$page")
+            [ "$(jq -r '.more' <<<"$page")" = "true" ] || break
+            offset=$((offset + 100)); [ $offset -lt 1000 ] || break
+          done
+          jq -n --argjson c "$all" --arg u "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            '{updated: $u, countries: ($c | map(select(.id != null and .id != "")))}' > _site/stats.json
+          echo "stats.json: $(jq '.countries | length' _site/stats.json) países"
 
       - uses: actions/configure-pages@v5
         with:
