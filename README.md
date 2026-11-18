@@ -20,13 +20,13 @@ pruebas de codigos
 
 La portada muestra las visitas totales, las de cada app y un mapa por país, con
 [GoatCounter](https://www.goatcounter.com/) (anónimo, sin cookies). Un solo sitio
-de GoatCounter, `mauricespinoza`, cuenta todo `mauricespinoza.github.io`: cada app
+de GoatCounter, `mespinoza-geo`, cuenta todo `mauricespinoza.github.io`: cada app
 carga el mismo `count.js` y las rutas se pasan a minúsculas.
 
 Para activarlo, una vez:
 
-1. Crear la cuenta en goatcounter.com con el código `mauricespinoza` (si se usa
-   otro, cambiar `mauricespinoza.goatcounter.com` en `pages/index.html`, en el
+1. Crear la cuenta en goatcounter.com con el código `mespinoza-geo` (si se usa
+   otro, cambiar `mespinoza-geo.goatcounter.com` en `pages/index.html`, en el
    workflow y en el `<head>` de cada app).
 2. En Settings, marcar «Allow adding visitor counts on your website»: las cifras
    de la portada salen del contador público.
@@ -38,7 +38,7 @@ Para activarlo, una vez:
 
    ```html
    <script>window.goatcounter = { path: function (p) { return p.toLowerCase(); } };</script>
-   <script data-goatcounter="https://mauricespinoza.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+   <script data-goatcounter="https://mespinoza-geo.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
    ```
 
 El mapa (`pages/world.json`) lo escribe `tools/make-world-map.mjs`.

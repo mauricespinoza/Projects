@@ -87,7 +87,7 @@ jobs:
       - name: Visit stats (GoatCounter)
         env:
           GOATCOUNTER_TOKEN: ${{ secrets.GOATCOUNTER_TOKEN }}
-          GOATCOUNTER_SITE: https://mauricespinoza.goatcounter.com
+          GOATCOUNTER_SITE: https://mespinoza-geo.goatcounter.com
         run: |
           if [ -z "$GOATCOUNTER_TOKEN" ]; then echo "Sin GOATCOUNTER_TOKEN: no se escribe stats.json"; exit 0; fi
           end=$(date -u +%Y-%m-%dT%H:00:00Z)
